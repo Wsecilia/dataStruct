@@ -14,4 +14,4 @@ int list_show(linklist H); // 链表遍历
 linklist list_free(linklist H); // 链表释放
 int list_reverse(linklist H); // 链表翻转
 linklist list_adjmax(linklist H,data_t *value); // 求相邻两个结点的最大值的第一个结点指针
-int list_merge(linklist H1, linklist H2); // 单链表A、B按data值递增有序，将两表合为一表A，依旧递增有序;
+int list_merge(linklist H1, linklist H2); // 单链表A、B按data值递增有序，将两表合为一表A，依旧递增有序;【链式排序】

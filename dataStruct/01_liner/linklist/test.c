@@ -32,6 +32,9 @@ int main(int argc, char const *argv[]){
 
     list_show(H1);
     list_show(H2);
+    list_merge(H1, H2);
+    printf("merge:\n");
+    list_show(H1);
 
     list_free(H1);
     list_free(H2);

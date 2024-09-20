@@ -284,5 +284,80 @@ linklist list_adjmax(linklist H,data_t *value){
  * 10、单链表A、B按data值递增有序，将两表合为一表A，依旧递增有序;
  */
 int list_merge(linklist H1, linklist H2){
+    linklist p, q, r;
+
+    if (H1==NULL || H2==NULL){
+        printf("H1 or H2 is NULL");
+        return -1;
+    }
+
+    p = H1->next;
+    q = H2->next;
+    r = H1;
+    H1->next = NULL; // 将头结点与其他部分分离;
+    H2->next = NULL; // 将头结点与其他部分分离;
+
+    while (p&&q){//p、q都不为空;
+        if (p->data<=q->data){
+            /**
+             * 如果 p 的数据小于等于 q 的数据，
+             * 将 p 指向的结点链接到 r 指向的结点后面，
+             * 然后移动 p 和 r 指针。
+             */
+            r->next = p;
+            p = p->next;
+            r = r->next;
+            r->next = NULL;
+        }else{
+            r->next = q;
+            q = q->next;
+            r = r->next;
+            r->next = NULL;
+        }
+    }
+    
+    /*如果 p 为空，则将 q 指向的剩余链表链接到 r 指向的结点后面。*/
+    if (p==NULL){ 
+        r->next = q;
+    }else{
+        r->next = p;
+    }
+
     return 0;
 };
+
+/**
+ * kimi给的代码：
+ * 
+ int list_merge(linklist H1, linklist H2){
+    linklist p, q, r;
+
+    if (H1 == NULL || H2 == NULL){
+        printf("H1 or H2 is NULL\n");
+        return -1;
+    }
+
+    p = H1->next;
+    q = H2->next;
+    r = H1; // 使用 H1 作为新链表的头结点
+
+    while (p && q) { // p、q都不为空
+        if (p->data <= q->data) {
+            r->next = p;
+            p = p->next;
+        } else {
+            r->next = q;
+            q = q->next;
+        }
+        r = r->next;
+    }
+    
+    if (p) {
+        r->next = p; // 链接 H1 的剩余部分
+    } else {
+        r->next = q; // 链接 H2 的剩余部分
+    }
+
+    return 0;
+}
+ */
