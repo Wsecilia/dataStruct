@@ -192,7 +192,7 @@ linklist list_free(linklist H){
     printf("free linklist!!\n");
     while (H!=NULL){
         p = H;
-        printf("%d", p->data);
+        printf("%d-", p->data);
         free(p);
         H = H->next;
     }
@@ -242,17 +242,47 @@ int list_reverse(linklist H){
 /**
  * 9、求相邻两个结点的最大值的第一个结点指针
  */
-list_adjmax(linklist H){
+linklist list_adjmax(linklist H,data_t *value){
     linklist p, q, r;
-    
+    data_t sum;
+
+    //1、校验参数
     if (H==NULL){
         printf("H is NULL\n");
         return NULL;
     }
 
+    /**
+     *  H->next == NULL：表示链表中没有数据结点，即第一个数据结点为空。
+        H->next->next == NULL：表示链表中只有一个数据结点，即第二个数据结点为空。
+        H->next->next->next == NULL：表示链表中只有两个数据结点，即第三个数据结点为空。
+     */
     if (H->next==NULL&&H->next->next==NULL||H->next->next->next==NULL){
         return H;
     }
-    
-    
+
+    q = H->next;       // 第一个结点;
+    p = H->next->next; // 第二个结点，也可写成q->next;
+    r = q;             // 初始值;
+    sum = q->data + q->data;
+
+    while (p->next!=NULL){
+        p = p->next;
+        q = q->next;
+        if(sum<q->data+p->data){
+            sum = q->data + p->data;
+            r = q; // 储存第一结点;
+        }
+    }
+
+    *value = sum;
+
+    return r;
 }; 
+
+/**
+ * 10、单链表A、B按data值递增有序，将两表合为一表A，依旧递增有序;
+ */
+int list_merge(linklist H1, linklist H2){
+    return 0;
+};
