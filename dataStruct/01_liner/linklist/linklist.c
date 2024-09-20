@@ -192,7 +192,7 @@ linklist list_free(linklist H){
     printf("free linklist!!\n");
     while (H!=NULL){
         p = H;
-        printf("%d-", p->data);
+        printf("%d\t", p->data);
         free(p);
         H = H->next;
     }
