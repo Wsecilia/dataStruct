@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "linkstack.h": "c"
+        "linkstack.h": "c",
+        "string.h": "c"
     }
 }
